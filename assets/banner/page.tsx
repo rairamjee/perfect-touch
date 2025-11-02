@@ -1,4 +1,4 @@
-export default function Slider() {
+export default function Banner() {
   return (
     <div>
       <video width="100%" controls autoPlay loop muted>

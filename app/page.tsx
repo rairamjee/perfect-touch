@@ -1,4 +1,4 @@
-import Slider from "@/assets/slider/page";
+import Slider from "@/assets/banner/page";
 import Image from "next/image";
 
 export default function Home() {
