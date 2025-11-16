@@ -1,39 +1,19 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 
 export default function Banner() {
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [showControls, setShowControls] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const video = videoRef.current;
     if (video) {
-      video.play().catch(() => {
-        setIsPlaying(false);
-      });
+      video.play().catch(() => {});
     }
   }, []);
 
-  const togglePlay = () => {
-    const video = videoRef.current;
-    if (video) {
-      if (isPlaying) {
-        video.pause();
-      } else {
-        video.play();
-      }
-      setIsPlaying(!isPlaying);
-    }
-  };
-
   return (
-    <div 
-      className="relative w-full h-[60vh] md:h-[80vh] overflow-hidden group"
-      onMouseEnter={() => setShowControls(true)}
-      onMouseLeave={() => setShowControls(false)}
-    >
+    <div className="relative w-full h-[60vh] md:h-[80vh] overflow-hidden">
       <video
         ref={videoRef}
         className="w-full h-full object-cover"
@@ -41,8 +21,6 @@ export default function Banner() {
         loop
         muted
         playsInline
-        onPlay={() => setIsPlaying(true)}
-        onPause={() => setIsPlaying(false)}
       >
         <source src="/slider.mp4" type="video/mp4" />
         Your browser does not support the video tag.
@@ -51,28 +29,7 @@ export default function Banner() {
       {/* Overlay Gradient */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
 
-      {/* Play/Pause Button Overlay */}
-      {showControls && (
-        <div className="absolute inset-0 flex items-center justify-center bg-black/20 transition-opacity">
-          <button
-            onClick={togglePlay}
-            className="bg-white/90 hover:bg-white rounded-full p-4 transition-all transform hover:scale-110 shadow-lg"
-            aria-label={isPlaying ? 'Pause video' : 'Play video'}
-          >
-            {isPlaying ? (
-              <svg className="w-8 h-8 text-gray-900" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" />
-              </svg>
-            ) : (
-              <svg className="w-8 h-8 text-gray-900" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            )}
-          </button>
-        </div>
-      )}
-
-      {/* Optional Content Overlay */}
+      {/* Content Overlay */}
       <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12 text-white">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg">
