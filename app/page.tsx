@@ -1,11 +1,11 @@
 import Slider from "@/assets/banner/page";
-import Image from "next/image";
+import Reviews from "@/components/Reviews";
 
 export default function Home() {
   return (
-    
-    <div>
+    <div className="w-full">
       <Slider />
+      <Reviews />
     </div>
   );
 }
