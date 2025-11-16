@@ -4,6 +4,7 @@ import LuxuryInteriorsHero from "@/assets/description/page";
 import Discount from "@/assets/discount/page";
 import Image from "next/image";
 import Reviews from "@/components/Reviews";
+import Products from "@/components/Products";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
       <Slider />
       <Discount/>
       <LuxuryInteriorsHero/>
+      <Products />
       <Reviews />
     </div>
   );

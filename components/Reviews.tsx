@@ -154,9 +154,12 @@ export default function Reviews() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-12 animate-fade-in">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 animate-slide-down">
-            What Our Clients Say
-          </h2>
+          <div className="inline-block mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 animate-slide-down relative inline-block">
+              What Our Clients Say
+              <span className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 animate-underline-expand"></span>
+            </h2>
+          </div>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto animate-fade-in-delay">
             Don't just take our word for it. Here's what our satisfied clients have to say about working with us.
           </p>
@@ -184,10 +187,10 @@ export default function Reviews() {
                     className="min-w-full px-4 flex items-center justify-center"
                   >
                     <div
-                      className={`max-w-3xl w-full bg-white rounded-2xl shadow-xl p-8 md:p-12 border border-gray-100 transform transition-all duration-700 ${
+                      className={`max-w-3xl w-full bg-white rounded-2xl shadow-xl p-8 md:p-12 border-2 transform transition-all duration-700 ${
                         isActive
-                          ? 'opacity-100 scale-100 translate-x-0'
-                          : 'opacity-0 scale-95 translate-x-10'
+                          ? 'opacity-100 scale-100 translate-x-0 border-yellow-400 shadow-2xl'
+                          : 'opacity-0 scale-95 translate-x-10 border-gray-100'
                       } ${isAnimating ? 'animate-slide-in' : ''} hover:shadow-2xl hover:scale-105`}
                       style={{
                         animation: isActive && !isAnimating ? 'fadeInScale 0.8s ease-out' : 'none',
@@ -200,19 +203,31 @@ export default function Reviews() {
                           animationDelay: isActive ? '0.2s' : '0s',
                         }}
                       >
-                        {renderStars(review.rating)}
+                        {renderStars(review.rating).map((star, idx) => (
+                          <span
+                            key={idx}
+                            className="transform transition-all duration-300 hover:scale-125 hover:rotate-12"
+                            style={{
+                              animationDelay: isActive ? `${0.2 + idx * 0.1}s` : '0s',
+                            }}
+                          >
+                            {star}
+                          </span>
+                        ))}
                       </div>
 
                       {/* Review Content */}
                       <blockquote 
-                        className="text-center mb-8 animate-text-fade"
+                        className="text-center mb-8 animate-text-fade relative"
                         style={{
                           animationDelay: isActive ? '0.4s' : '0s',
                         }}
                       >
-                        <p className="text-lg md:text-xl text-gray-700 leading-relaxed italic">
-                          "{review.content}"
+                        <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 text-yellow-400 text-6xl opacity-20 font-serif">"</div>
+                        <p className="text-lg md:text-xl text-gray-700 leading-relaxed italic relative z-10 transform transition-all duration-300 hover:scale-105">
+                          {review.content}
                         </p>
+                        <div className="absolute -bottom-4 right-1/2 transform translate-x-1/2 text-yellow-400 text-6xl opacity-20 font-serif">"</div>
                       </blockquote>
 
                       {/* Reviewer Info */}
@@ -222,14 +237,17 @@ export default function Reviews() {
                           animationDelay: isActive ? '0.6s' : '0s',
                         }}
                       >
-                        <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center text-white font-bold text-xl shadow-lg transform hover:scale-110 transition-transform duration-300 animate-avatar-bounce">
-                          {review.avatar}
+                        <div className="relative group/avatar">
+                          <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full blur-lg opacity-0 group-hover/avatar:opacity-50 transition-opacity duration-300"></div>
+                          <div className="relative w-16 h-16 rounded-full bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center text-white font-bold text-xl shadow-lg transform hover:scale-110 transition-all duration-300 animate-avatar-bounce group-hover/avatar:rotate-6">
+                            {review.avatar}
+                          </div>
                         </div>
-                        <div className="text-left">
-                          <div className="font-semibold text-gray-900 text-lg">
+                        <div className="text-left transform transition-all duration-300 group-hover:translate-x-2">
+                          <div className="font-semibold text-gray-900 text-lg group-hover:text-blue-600 transition-colors">
                             {review.name}
                           </div>
-                          <div className="text-gray-600 text-sm">
+                          <div className="text-gray-600 text-sm group-hover:text-gray-800 transition-colors">
                             {review.role}, {review.company}
                           </div>
                         </div>
@@ -247,13 +265,17 @@ export default function Reviews() {
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
-                className={`transition-all duration-300 rounded-full ${
+                className={`transition-all duration-500 rounded-full transform ${
                   index === currentIndex
-                    ? 'w-10 h-3 bg-gradient-to-r from-blue-600 to-purple-600'
-                    : 'w-3 h-3 bg-gray-300 hover:bg-gray-400'
+                    ? 'w-10 h-3 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 shadow-lg scale-110 animate-glow'
+                    : 'w-3 h-3 bg-gray-300 hover:bg-gray-400 hover:scale-125'
                 }`}
                 aria-label={`Go to review ${index + 1}`}
-              />
+              >
+                {index === currentIndex && (
+                  <span className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full animate-pulse"></span>
+                )}
+              </button>
             ))}
           </div>
         </div>
