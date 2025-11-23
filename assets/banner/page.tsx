@@ -22,7 +22,7 @@ export default function Banner() {
         muted
         playsInline
       >
-        <source src="/slider.mp4" type="video/mp4" />
+        <source src="/slider1.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
 
