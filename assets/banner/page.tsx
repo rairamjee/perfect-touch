@@ -27,7 +27,7 @@ export default function Banner() {
       </video>
 
       {/* Overlay Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
 
       {/* Content Overlay */}
       <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12 text-white">
@@ -35,13 +35,16 @@ export default function Banner() {
           <h1 className="text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg">
             Welcome to Perfect Touch
           </h1>
+          <p className="text-2xl md:text-3xl mb-6 text-gray-200 drop-shadow-md">
+            Interior Design & Decor 
+          </p>
           <p className="text-lg md:text-xl mb-6 text-gray-200 drop-shadow-md">
             Excellence in every detail, perfection in every project
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <a
               href="/quote"
-              className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all shadow-lg hover:shadow-xl text-center"
+              className="bg-linear-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all shadow-lg hover:shadow-xl text-center"
             >
               Get Started
             </a>

@@ -41,7 +41,7 @@ export default function Header() {
               <span className="font-bold text-yellow-400 animate-bounce-subtle">25% OFF</span> on your first Order -{' '}
               <Link
                 href="/"
-                className="text-yellow-400 hover:text-yellow-300 font-bold underline underline-offset-2 transition-all hover:scale-105 inline-block relative group"
+                className="text-yellow-400 hover:text-yellow-300 font-bold  underline-offset-2 transition-all hover:scale-105 inline-block relative group"
               >
                 Explore Now
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-yellow-400 group-hover:w-full transition-all duration-300"></span>
