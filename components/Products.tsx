@@ -698,6 +698,36 @@ const products: Product[] = [
       application: 'Interior Walls',
     },
   },
+  {
+    id: 'ply',
+    name: 'Ply',
+    description: 'High-quality plywood sheets perfect for furniture, cabinetry, and interior applications. Durable, versatile, and available in various grades and finishes.',
+    image: '/plywood.jpg',
+    gallery: ['/plywood.jpg', '/plywood1.jpg'],
+    features: ['High Strength', 'Moisture Resistant', 'Smooth Finish', 'Multiple Grades'],
+    category: 'Wood Products',
+    specifications: {
+      material: 'Premium Plywood',
+      size: 'Standard Sheets',
+      finish: 'Natural/Polished',
+      application: 'Furniture & Interiors',
+    },
+  },
+  {
+    id: 'sunmica',
+    name: 'Sunmica',
+    description: 'Premium decorative laminates offering endless design possibilities. Perfect for furniture surfaces, countertops, and interior applications with superior durability.',
+    image: '/plywood.jpg',
+    gallery: ['/plywood.jpg', '/plywood1.jpg'],
+    features: ['Scratch Resistant', 'Heat Resistant', 'Easy Maintenance', 'Wide Designs'],
+    category: 'Laminates',
+    specifications: {
+      material: 'High-Pressure Laminate',
+      size: 'Standard Sheets',
+      finish: 'Multiple Finishes',
+      application: 'Furniture & Surfaces',
+    },
+  },
 ];
 
 export default function Products() {
@@ -992,7 +1022,7 @@ export default function Products() {
           </div>
 
           {/* Row 3: Three Smaller Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-6 md:mb-8">
             {products.slice(5, 8).map((product, index) => (
               <div
                 key={product.id}
@@ -1092,6 +1122,109 @@ export default function Products() {
                 <div className="absolute inset-[-2px] border border-yellow-400/0 group-hover:border-yellow-400/25 rounded-3xl transition-all duration-1000 pointer-events-none z-35 blur-sm"></div>
             </div>
           ))}
+          </div>
+
+          {/* Row 4: Two Medium Cards (Ply & Sunmica) */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
+            {products.slice(8, 10).map((product, index) => (
+              <div
+                key={product.id}
+                className="group relative bg-white rounded-3xl overflow-hidden shadow-professional cursor-pointer animate-card-entrance card-3d-enhanced"
+                style={{ animationDelay: `${(index + 8) * 0.12}s` }}
+                onMouseEnter={() => setHoveredProduct(product.id)}
+                onMouseLeave={() => setHoveredProduct(null)}
+                onClick={() => setSelectedProduct(product)}
+              >
+                {/* Enhanced Shimmer Effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-2000 z-30 pointer-events-none rounded-3xl"></div>
+                
+                {/* Multi-layer Hover Glow */}
+                <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/0 via-yellow-400/0 to-yellow-500/0 group-hover:from-yellow-400/12 group-hover:via-yellow-400/6 group-hover:to-yellow-500/12 transition-all duration-700 rounded-3xl z-20 pointer-events-none"></div>
+                <div className="absolute inset-0 bg-gradient-to-tl from-yellow-500/0 to-yellow-400/0 group-hover:from-yellow-500/8 group-hover:to-yellow-400/8 transition-all duration-1000 rounded-3xl z-20 pointer-events-none"></div>
+                
+                {/* Animated Border Glow */}
+                <div className="absolute inset-0 border-2 border-yellow-400/0 group-hover:border-yellow-400/50 rounded-3xl transition-all duration-700 pointer-events-none z-25 animate-border-pulse"></div>
+                
+                <div className="relative h-[280px] md:h-[320px] overflow-hidden">
+                  {/* Enhanced Animated Background */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/5 via-transparent to-yellow-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10"></div>
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(251,191,36,0.08),transparent_60%)] opacity-0 group-hover:opacity-100 transition-opacity duration-1000 z-10"></div>
+                  
+                  {/* Gradient Overlay - Enhanced with Dynamic Opacity */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/35 to-transparent opacity-0 group-hover:from-black/88 group-hover:via-black/58 group-hover:to-transparent group-hover:opacity-100 transition-all duration-700 z-10"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-black/25 via-transparent to-black/25 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10"></div>
+                  
+                  {/* Enhanced Animated Light Rays */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/0 via-yellow-400/0 to-yellow-500/0 group-hover:from-yellow-400/15 group-hover:via-yellow-400/8 group-hover:to-yellow-500/15 transition-all duration-1000 z-15"></div>
+                  
+                  <Image
+                    src={product.image}
+                    alt={product.name}
+                    fill
+                    className={`image-smooth-transition object-cover ${
+                      hoveredProduct === product.id ? 'brightness-115 contrast-110' : 'brightness-100 contrast-100'
+                    }`}
+                  />
+                  
+                  {/* Category Badge - Enhanced */}
+                  <div className="absolute top-5 left-5 z-20 transform transition-all duration-500">
+                    <span className="badge-enhanced bg-gradient-to-r from-yellow-400 to-yellow-500 group-hover:from-yellow-300 group-hover:to-yellow-400 text-black px-4 py-2 rounded-xl text-xs font-bold shadow-2xl inline-block animate-scale-in-bounce" style={{ animationDelay: `${(index + 8) * 0.15}s` }}>
+                      {product.category}
+                    </span>
+                  </div>
+                  
+                </div>
+                
+                <div className="p-6 md:p-7 relative bg-gradient-to-b from-white to-gray-50/50">
+                  {/* Animated Top Border */}
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-yellow-400 to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-center"></div>
+                  
+                  <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3 group-hover:text-yellow-600 transition-all duration-500 transform group-hover:translate-x-2 animate-slide-up-fade-in" style={{ animationDelay: `${(index + 8) * 0.18}s` }}>
+                    {product.name}
+                  </h3>
+                  
+                  {/* Description - Always Visible */}
+                  <p className="text-gray-600 text-sm mb-5 line-clamp-2 leading-relaxed">
+                    {product.description}
+                  </p>
+                  
+                  {/* Features - Always Visible */}
+                  <div className="flex flex-wrap gap-2.5 mb-5">
+                    {product.features.slice(0, 2).map((feature, idx) => (
+                      <span
+                        key={idx}
+                        className="bg-gradient-to-r from-gray-100 to-gray-50 text-gray-700 px-4 py-1.5 rounded-lg text-xs font-semibold border border-gray-200 shadow-sm"
+                      >
+                        {feature}
+                      </span>
+                    ))}
+                  </div>
+                  
+                  {/* View Details Button - Always Visible */}
+                  <button 
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedProduct(product);
+                      setSelectedImageIndex(0);
+                    }}
+                    className="w-full bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-400 text-black px-5 py-3 rounded-xl font-bold text-sm hover:from-yellow-300 hover:via-yellow-400 hover:to-yellow-300 transition-all shadow-lg hover:shadow-xl transform hover:scale-105 relative overflow-hidden group/btn"
+                  >
+                    <span className="relative z-10 flex items-center justify-center gap-2">
+                      <span>View Details</span>
+                      <svg className="w-5 h-5 transform group-hover/btn:translate-x-2 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </span>
+                    <div className="absolute inset-0 bg-gradient-to-r from-yellow-300 to-yellow-400 opacity-0 group-hover/btn:opacity-100 transition-opacity"></div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-1000"></div>
+                  </button>
+                </div>
+                
+                {/* Enhanced Border Glow */}
+                <div className="absolute inset-0 border-2 border-yellow-400/0 group-hover:border-yellow-400/50 rounded-3xl transition-all duration-700 pointer-events-none z-40 animate-border-pulse"></div>
+                <div className="absolute inset-[-2px] border border-yellow-400/0 group-hover:border-yellow-400/25 rounded-3xl transition-all duration-1000 pointer-events-none z-35 blur-sm"></div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
